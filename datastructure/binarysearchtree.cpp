@@ -10,6 +10,8 @@ class BinarySearchTree {
   BinarySearchTree(int);
   static BinarySearchTree* Insert(BinarySearchTree*, int);
   static void Inoder(BinarySearchTree*);
+  static BinarySearchTree* Delete(BinarySearchTree*, int);
+  static BinarySearchTree* SearchMin(BinarySearchTree*);
 };
 using BST = BinarySearchTree;
 
@@ -29,12 +31,51 @@ BST* BST::Insert(BST* root, int data) {
 }
 
 void BST::Inoder(BST* root) {
-  if (root == NULL) return;
+  if (root == NULL) {
+    return;
+  }
 
-  if (root->left != NULL) Inoder(root->left);
+  if (root->left != NULL) {
+    Inoder(root->left);
+  }
   cout << root->data << endl;
-  if (root->right != NULL) Inoder(root->right);
+  if (root->right != NULL) {
+    Inoder(root->right);
+  }
   return;
+}
+
+BST* BST::SearchMin(BST* root) {
+  if (root->left != NULL) {
+    return SearchMin(root->left);
+  }
+  return root;
+}
+
+BST* BST::Delete(BST* root, int X) {
+  // search the target node
+  if (root->data < X) {
+    root->right = BST::Delete(root->right, X);
+  } else if (root->data > X) {
+    root->left = BST::Delete(root->left, X);
+  } else {
+    if (root->left == NULL) {
+      BST* tmp = root->right;
+      free(root);
+      return tmp;
+    } else if (root->right == NULL) {
+      BST* tmp = root->left;
+      free(root);
+      return tmp;
+    } else {
+      // 両方存在する時 - 右側の最小値ノードを 後継者 "inorder successor"
+      // として自分と入れ替える
+      BST* tmp = BST::SearchMin(root->right);
+      root->data = tmp->data;
+      root->right = BST::Delete(root->right, tmp->data);
+    }
+  }
+  return root;
 }
 
 int main() {
@@ -47,5 +88,9 @@ int main() {
   BST::Insert(root, 50);
   BST::Insert(root, 90);
 
+  BST::Inoder(root);
+
+  printf("\nDelete 60--------------\n");
+  BST::Delete(root, 60);
   BST::Inoder(root);
 }
