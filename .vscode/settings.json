@@ -1,6 +1,8 @@
 {
   "files.associations": {
     "*.liquid": "yaml",
-    "iosfwd": "cpp"
+    "iosfwd": "cpp",
+    "__hash_table": "cpp",
+    "unordered_map": "cpp"
   }
 }
