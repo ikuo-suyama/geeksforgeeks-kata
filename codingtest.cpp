@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <unordered_map>
 #include <vector>
+const int INF = 100100100;
 #define rep(i, n) for (int i = 0; i < (n); i++)
 #define repi(i, s, n) for (int i = (s); i < (n); i++)
 
