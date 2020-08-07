@@ -1,4 +1,4 @@
-
+using namespace std;
 
 #include <set>
 #include <iostream>

@@ -3,6 +3,7 @@
 
 // you can write to stdout for debugging purposes, e.g.
 // cout << "this is a debug message" << endl;
+using namespace std;
 
 #include <set>
 #include <iostream>
@@ -67,4 +68,8 @@ vector<int> solution(string &S, vector<int> &P, vector<int> &Q) {
         ans[i] = ret;
     }
     return ans;
+}
+
+int main() {
+  
 }
