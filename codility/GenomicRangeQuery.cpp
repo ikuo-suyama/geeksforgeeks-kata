@@ -57,7 +57,6 @@ vector<int> solution(string &S, vector<int> &P, vector<int> &Q) {
 
         auto llim = lmax[q];
         auto rlim = rmax[p];
-        printf("%d %d\n", p, q);
         rep(j, 4) {
             // printf("-- j:%d / %d %d\n", j + 1, llim[j], rlim[j]);
             if (p <= llim[j] && rlim[j] <= q) {
