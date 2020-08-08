@@ -28,26 +28,41 @@ cout << endl;
 
 int solution(vector<int> &A) {
     int N = A.size();
-    int ans = 0;
-    rep(i, N) {
-        int l = i - A[i];
-        int r = i + A[i];
-        
-        repi(j, i + 1, N) {
-            int tl = j - A[j];
-            int tr = j + A[j];
-            if (j <= r || r >= tl) {
-                printf("j: %d %d %d\n", j, tr, tl);
-                ans++;
-            }
-        }
-        printf("%d %d\n",i,ans);
-    }
+    long ans = 0;
     
+    vector<long> lefts(N);
+    rep(i, N) {
+        lefts[i] = i - A[i];
+    }
+    sort(lefts.begin(), lefts.end());
+    
+    rep(i, N - 1) {
+        long l = i - A[i];
+        long r = i + A[i];
+       
+        auto del = lower_bound(lefts.begin(), lefts.end(), l);
+        // erase はO(N)やぞ
+        // lefts.erase(del);
+        lefts[del - lefts.begin()] = lefts.back();
+        lefts.pop_back();
+
+        int idx = upper_bound(lefts.begin(), lefts.end(), r) - lefts.begin();
+        ans += idx;
+
+        // repi(j, i + 1, N) {
+        //     int tl = j - A[j];
+        //     int tr = j + A[j];
+        //     if (r >= tl) {
+        //         ans++;
+        //     }
+        // }
+        if (ans > 10000000) return -1;
+    }
     return ans;
 }
 
 int main() {
+  // vector<int> c = {1, 0, 1};
   vector<int> c = {1, 5, 2, 1, 4, 0};
-  solution(c);
+  cout << solution(c) << endl;
 }
