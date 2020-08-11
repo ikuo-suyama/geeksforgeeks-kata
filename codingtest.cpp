@@ -13,12 +13,12 @@
 #include <unordered_map>
 #include <vector>
 const int INF = 100100100;
+using namespace std;
 
 #define print_vec(v)                        \
   rep(l, v.size()) { cout << v[l] << " "; } \
   cout << endl;
 
-using namespace std;
 
 int solution(vector<int> &A) {
   // write your code in C++14 (g++ 6.2.0)
