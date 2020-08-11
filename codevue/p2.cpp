@@ -110,8 +110,8 @@ vector<string> split(string target, char c) {
 }
 
 int main() {
-  string line;
-  cin >> line;
+  string line = "100.0;200.0";
+  // cin >> line;
   int N = line.size();
   
   vector<string> splitted = split(line, ';');
