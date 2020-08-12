@@ -1,7 +1,7 @@
 #include <fstream>
 #ifdef LOCAL
-#define INPUT_FILE          \
-  ifstream in("input.txt"); \
+#define INPUT_FILE             \
+  ifstream in("utils/whilein.txt"); \
   cin.rdbuf(in.rdbuf());
 #else
 #define INPUT_FILE
@@ -29,6 +29,16 @@ int solution(vector<int> &A) {
 }
 
 int main() {
-  vector<int> c = {1, 2, 3};
+  INPUT_FILE
+
+  vector<string> inputs;
+  string buf;
+  while (cin >> buf) {
+    inputs.push_back(buf);
+  }
+
+  print_vec(inputs);
+
+  vector<int> c(0);
   cout << solution(c) << endl;
 }
