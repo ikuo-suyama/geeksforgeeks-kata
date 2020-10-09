@@ -29,10 +29,12 @@ int pivot(vector<int>& c, int l, int r) {
 
   for (int j = i + 1; j < r; j++) {
     if (c[j] < pivot) {
+      // pivotより小さい要素を左へ追いやる
       i++;
       swap(c[i], c[j]);
     }
   }
+  // 切れ目の位置にpivotを入れる
   swap(c[i+1], c[r]);
   return i + 1;
 }
